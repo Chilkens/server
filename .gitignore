@@ -26,4 +26,3 @@ nbdist/
 
 *.war
 *.jar
-application.properties

@@ -1,8 +1,7 @@
 package com.chilkens.timeset.controller;
 
-import com.chilkens.timeset.domain.TimeTable;
-import com.chilkens.timeset.service.HistoryService;
-import com.chilkens.timeset.service.OpenTableService;
+import com.chilkens.timeset.domain.Timetable;
+import com.chilkens.timeset.service.TimetableService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -19,17 +18,15 @@ import java.util.List;
 @Api(value = "OpenAndHistory API", description = "OpenAndHistory API", basePath = "/api/v1/test")
 @RestController
 @RequestMapping("/api/v1/openHistory")
-public class TimeTableController {
+public class TimetableController {
     @Autowired
-    OpenTableService openTableService;
-    @Autowired
-    HistoryService historyService;
+    TimetableService timetableService;
 
-    @ApiOperation(value = "save", notes = "save TimeTable")
+    @ApiOperation(value = "save", notes = "save Timetable")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ApiParam("key") @PathVariable String key, @ApiParam("key") @PathVariable String title, @ApiParam("key") @PathVariable Integer time, @ApiParam("key") @PathVariable Date start, @ApiParam("key") @PathVariable Date end, @ApiParam("key") @PathVariable Integer max, @ApiParam("key") @PathVariable Integer current, @ApiParam("key") @PathVariable Timestamp createdAt, @ApiParam("key") @PathVariable String createdBy, @ApiParam("key") @PathVariable Short deleated) {
         try {
-            openTableService.save(TimeTable.build(key, title, time, start, end, max, current, createdAt, createdBy, deleated));
+            timetableService.save(Timetable.build(key, title, time, start, end, max, current, createdAt, createdBy, deleated));
             return "save success";
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,16 +34,16 @@ public class TimeTableController {
         }
     }
 
-    @ApiOperation(value = "findAll", notes = "find all TimeTable")
+    @ApiOperation(value = "findAll", notes = "find all Timetable")
     @RequestMapping(value = "findAll", method = RequestMethod.GET)
-    public List<TimeTable> findAll() {
-        return historyService.findAll();
+    public List<Timetable> findAll() {
+        return timetableService.findAll();
     }
 
-    @ApiOperation(value = "findByCreatedBy", notes = "find by createdBy TimeTable")
+    @ApiOperation(value = "findByCreatedBy", notes = "find by createdBy Timetable")
     @RequestMapping(value = "findByCreatedBy/{createdBy}", method = RequestMethod.GET)
-    public TimeTable findByName(@PathVariable String createdBy) {
-        return historyService.findByCreatedBy(createdBy);
+    public Timetable findByName(@PathVariable String createdBy) {
+        return timetableService.findByCreatedBy(createdBy);
     }
 
 }

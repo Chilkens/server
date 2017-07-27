@@ -17,12 +17,12 @@ import java.sql.Timestamp;
 @Table(name="pick")
 public class Pick  implements Serializable {
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="pickId")
     private Long pickId;
 
-    @OneToOne
-    @JoinColumn(name = "tableId")
-    private TimeTable time_table;
+    @Column(name="tableId")
+    private Long tableId;
 
     @Column
     private String createdBy;

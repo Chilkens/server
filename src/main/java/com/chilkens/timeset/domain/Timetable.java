@@ -16,7 +16,7 @@ package com.chilkens.timeset.domain;
 @Entity
 @EntityListeners(value = { AuditingEntityListener.class })
 @Table(name = "time_table")
-public class TimeTable implements Serializable {
+public class Timetable implements Serializable {
     @Id
     @Column(name = "tableId")
     private Long tableId;
@@ -51,8 +51,8 @@ public class TimeTable implements Serializable {
     @Column
     private Short deleated;
 
-    public static TimeTable build(String key, String title, Integer time, Date start, Date end, Integer max, Integer current, Timestamp createdAt, String createdBy, Short deleated) {
-        return TimeTable.builder()
+    public static Timetable build(String key, String title, Integer time, Date start, Date end, Integer max, Integer current, Timestamp createdAt, String createdBy, Short deleated) {
+        return Timetable.builder()
                 .key(key)
                 .title(title)
                 .time(time)

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class OpenTableService {
     @Autowired
     OpenRepository openRepository;
-
+    //test
     public void save(Time_table time_table){
         openRepository.save(time_table);
     }

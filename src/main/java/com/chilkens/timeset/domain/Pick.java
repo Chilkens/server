@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Setter
@@ -13,15 +14,15 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Entity
 @EntityListeners(value = { AuditingEntityListener.class })
-@Table
-public class Pick {
+@Table(name="pick")
+public class Pick  implements Serializable {
     @Id
     @Column
     private Long pickId;
 
     @OneToOne
     @JoinColumn(name = "tableId")
-    private Time_table time_table;
+    private TimeTable time_table;
 
     @Column
     private String createdBy;

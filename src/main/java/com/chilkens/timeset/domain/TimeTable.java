@@ -1,11 +1,12 @@
 package com.chilkens.timeset.domain;
 
-import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+        import lombok.*;
+        import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
+        import javax.persistence.*;
+        import java.io.Serializable;
+        import java.sql.Date;
+        import java.sql.Timestamp;
 
 @Setter
 @Getter
@@ -14,8 +15,8 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Entity
 @EntityListeners(value = { AuditingEntityListener.class })
-@Table
-public class Time_table {
+@Table(name = "time_table")
+public class TimeTable implements Serializable {
     @Id
     @Column
     private Long tableId;
@@ -50,8 +51,8 @@ public class Time_table {
     @Column
     private Short deleated;
 
-    public static Time_table build(String key, String title, Long time, Date start, Date end, Long max, Long current, Timestamp createdAt, String createdBy, Short deleated) {
-        return Time_table.builder()
+    public static TimeTable build(String key, String title, Long time, Date start, Date end, Long max, Long current, Timestamp createdAt, String createdBy, Short deleated) {
+        return TimeTable.builder()
                 .key(key)
                 .title(title)
                 .time(time)

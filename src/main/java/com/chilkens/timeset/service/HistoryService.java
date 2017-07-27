@@ -1,24 +1,25 @@
 package com.chilkens.timeset.service;
 
 import com.chilkens.timeset.dao.HistoryRepository;
-import com.chilkens.timeset.domain.Test;
-import com.chilkens.timeset.domain.Time_table;
+import com.chilkens.timeset.domain.TimeTable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by user on 2017-07-20.
  */
+@Service
 public class HistoryService {
     @Autowired
     HistoryRepository historyRepository;
 
-    public Time_table findByCreatedBy(String createdBy) {
+    public TimeTable findByCreatedBy(String createdBy) {
         return historyRepository.findByCreatedBy(createdBy);
     }
 
-    public List<Time_table> findAll() {
+    public List<TimeTable> findAll() {
         return historyRepository.findAll();
     }
 

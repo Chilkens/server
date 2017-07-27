@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Setter
@@ -13,8 +14,10 @@ import java.sql.Date;
 @AllArgsConstructor
 @Entity
 @EntityListeners(value = { AuditingEntityListener.class })
-@Table
-public class Pick_detail {
+@Table(name = "pick_detail")
+public class PickDetail implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long detailed;
 
@@ -28,8 +31,8 @@ public class Pick_detail {
     @Column
     private Long createdBy;
 
-    public static Pick_detail build(Long detailed, Date pickDate, Long createdBy) {
-        return Pick_detail.builder()
+    public static PickDetail build(Long detailed, Date pickDate, Long createdBy) {
+        return PickDetail.builder()
                 .detailed(detailed)
                 .pickDate(pickDate)
                 .createdBy(createdBy)

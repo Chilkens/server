@@ -8,13 +8,13 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @EnableAutoConfiguration
 @SpringBootApplication
-public class DemoApplication extends SpringBootServletInitializer {
+public class TimePicker extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(DemoApplication.class);
+		return application.sources(TimePicker.class);
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(TimePicker.class, args);
 	}
 }

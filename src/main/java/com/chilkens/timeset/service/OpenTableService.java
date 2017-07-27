@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class OpenTableService {
     @Autowired
     OpenRepository openRepository;
-    //test
     public void save(TimeTable time_table){
         openRepository.save(time_table);
     }

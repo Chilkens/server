@@ -18,7 +18,7 @@ package com.chilkens.timeset.domain;
 @Table(name = "time_table")
 public class TimeTable implements Serializable {
     @Id
-    @Column
+    @Column(name = "tableId")
     private Long tableId;
 
     @Column(unique=true)
@@ -28,7 +28,7 @@ public class TimeTable implements Serializable {
     private String title;
 
     @Column
-    private Long time;
+    private Integer time;
 
     @Column
     private Date start;
@@ -37,10 +37,10 @@ public class TimeTable implements Serializable {
     private Date end;
 
     @Column
-    private Long max;
+    private Integer max;
 
     @Column
-    private Long current;
+    private Integer current;
 
     @Column
     private Timestamp createdAt;
@@ -51,7 +51,7 @@ public class TimeTable implements Serializable {
     @Column
     private Short deleated;
 
-    public static TimeTable build(String key, String title, Long time, Date start, Date end, Long max, Long current, Timestamp createdAt, String createdBy, Short deleated) {
+    public static TimeTable build(String key, String title, Integer time, Date start, Date end, Integer max, Integer current, Timestamp createdAt, String createdBy, Short deleated) {
         return TimeTable.builder()
                 .key(key)
                 .title(title)

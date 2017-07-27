@@ -19,7 +19,7 @@ import java.util.List;
 @Api(value = "OpenAndHistory API", description = "OpenAndHistory API", basePath = "/api/v1/test")
 @RestController
 @RequestMapping("/api/v1/openHistory")
-public class OpenAndHistoryRepository {
+public class TimeTableController {
     @Autowired
     OpenTableService openTableService;
     @Autowired
@@ -27,7 +27,7 @@ public class OpenAndHistoryRepository {
 
     @ApiOperation(value = "save", notes = "save TimeTable")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ApiParam("key") @PathVariable String key, @ApiParam("key") @PathVariable String title, @ApiParam("key") @PathVariable Long time, @ApiParam("key") @PathVariable Date start, @ApiParam("key") @PathVariable Date end, @ApiParam("key") @PathVariable Long max, @ApiParam("key") @PathVariable Long current, @ApiParam("key") @PathVariable Timestamp createdAt, @ApiParam("key") @PathVariable String createdBy, @ApiParam("key") @PathVariable Short deleated) {
+    public String save(@ApiParam("key") @PathVariable String key, @ApiParam("key") @PathVariable String title, @ApiParam("key") @PathVariable Integer time, @ApiParam("key") @PathVariable Date start, @ApiParam("key") @PathVariable Date end, @ApiParam("key") @PathVariable Integer max, @ApiParam("key") @PathVariable Integer current, @ApiParam("key") @PathVariable Timestamp createdAt, @ApiParam("key") @PathVariable String createdBy, @ApiParam("key") @PathVariable Short deleated) {
         try {
             openTableService.save(TimeTable.build(key, title, time, start, end, max, current, createdAt, createdBy, deleated));
             return "save success";

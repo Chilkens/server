@@ -18,8 +18,8 @@ import java.sql.Date;
 public class PickDetail implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
-    private Long detailed;
+    @Column(name="detailId")
+    private Long detailId;
 
     @OneToOne
     @JoinColumn(name = "pickId")
@@ -33,7 +33,7 @@ public class PickDetail implements Serializable{
 
     public static PickDetail build(Long detailed, Date pickDate, Long createdBy) {
         return PickDetail.builder()
-                .detailed(detailed)
+                .detailId(detailed)
                 .pickDate(pickDate)
                 .createdBy(createdBy)
                 .build();

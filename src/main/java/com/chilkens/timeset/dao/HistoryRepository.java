@@ -1,25 +1,15 @@
 package com.chilkens.timeset.dao;
 
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.chilkens.timeset.domain.Test;
+import com.chilkens.timeset.domain.Time_table;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import javax.sql.DataSource;
 
 /**
  * Created by user on 2017-07-20.
  */
 @Repository
-public class HistoryRepository {
-
-    DataSource dataSource;
-
-    JdbcTemplate template;
-
-   public void openHistory (String user_id) {
-        String query = "SELECT * FROM DATABASE WHERE ID=" + user_id;
-        /*return template.queryForObject(query, );*/
-   }
-
-
+public interface HistoryRepository extends JpaRepository<Time_table, Long> {
+    Time_table findByCreatedBy (String createdBy);
 }

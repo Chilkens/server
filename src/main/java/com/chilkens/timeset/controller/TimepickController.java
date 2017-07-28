@@ -50,7 +50,10 @@ public class TimepickController {
             Timetable table = timetableService.findByKey(key);
             pick.setTableId(table.getTableId());
             
-            timepickService.savePickInfo(pick); // build?
+            timepickService.savePick(pick); // build?
+            // pickId를 알아와야한다.
+            // Pick 전체 레코드 말고 ID만 리턴하는  쿼리를 작성못하나???
+            // int pickId = timepickService.findLastId();
 
             for (int i = 0; i < pickDetail.size(); i++) {
                 timepickService.savePickDetail(pickDetail.get(i));

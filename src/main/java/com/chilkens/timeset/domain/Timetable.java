@@ -1,12 +1,11 @@
 package com.chilkens.timeset.domain;
 
-        import lombok.*;
-        import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-        import javax.persistence.*;
-        import java.io.Serializable;
-        import java.sql.Date;
-        import java.sql.Timestamp;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -18,40 +17,43 @@ package com.chilkens.timeset.domain;
 @Table(name = "time_table")
 public class Timetable implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "tableId")
     private Long tableId;
 
-    @Column(unique=true)
-    private String key;
+    @Column
+    private String key; // URL
 
     @Column
-    private String title;
+    private String title; // 방 제목
 
     @Column
-    private Integer time;
+    private Integer time; // 모임 시간
 
     @Column
-    private Date start;
+    private Date start; // 날짜 범위 시작
 
     @Column
-    private Date end;
+    private Date end; // 날짜 범위 마지막
 
     @Column
-    private Integer max;
+    private Integer max; // 인원수
 
     @Column
-    private Integer current;
+    private Integer current; // 현재까지 timepick한 인원수
 
     @Column
-    private Timestamp createdAt;
+    private Date createdAt; // 방 개설 날짜
 
     @Column
-    private String createdBy;
+    private String createdBy; // 방 개설자
 
     @Column
-    private Short deleated;
+    private boolean deleted; // 삭제 여부
 
-    public static Timetable build(String key, String title, Integer time, Date start, Date end, Integer max, Integer current, Timestamp createdAt, String createdBy, Short deleated) {
+    public static Timetable build(String key, String title, Integer time, Date start, Date end,
+                                  Integer max, Integer current, Date createdAt, String createdBy, boolean deleted) {
+
         return Timetable.builder()
                 .key(key)
                 .title(title)
@@ -62,7 +64,7 @@ public class Timetable implements Serializable {
                 .current(current)
                 .createdAt(createdAt)
                 .createdBy(createdBy)
-                .deleated(deleated)
+                .deleted(deleted)
                 .build();
     }
 }

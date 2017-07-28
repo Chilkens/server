@@ -2,6 +2,7 @@ package com.chilkens.timeset.dao;
 
 import com.chilkens.timeset.domain.Pick;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +10,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PickRepository extends JpaRepository<Pick, Long>{
+    /*
+    @Query("SELECT LAST_INSERT_ID()")
+    int findLastId();
+    */
 }

@@ -24,9 +24,9 @@ public class TimetableController {
 
     @ApiOperation(value = "save", notes = "save Timetable")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ApiParam("key") @PathVariable String key, @ApiParam("key") @PathVariable String title, @ApiParam("key") @PathVariable Integer time, @ApiParam("key") @PathVariable Date start, @ApiParam("key") @PathVariable Date end, @ApiParam("key") @PathVariable Integer max, @ApiParam("key") @PathVariable Integer current, @ApiParam("key") @PathVariable Timestamp createdAt, @ApiParam("key") @PathVariable String createdBy, @ApiParam("key") @PathVariable Short deleated) {
+    public String save(@PathVariable String title, @PathVariable Integer time, @PathVariable Date start, @PathVariable Date end, @PathVariable Integer max, @PathVariable Integer current, @PathVariable String createdBy) {
         try {
-            timetableService.save(Timetable.build(key, title, time, start, end, max, current, createdAt, createdBy, deleated));
+            timetableService.save(Timetable.build(title, time, start, end, max, current, createdBy));
             return "save success";
         } catch (Exception e) {
             e.printStackTrace();

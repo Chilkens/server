@@ -19,7 +19,9 @@ public class TimepickService {
     @Autowired
     PickDetailRepository pickDetailRepository;
 
-    public void savePickInfo(Pick pickInfo){ pickInfoRepository.save(pickInfo); }
+    public void savePickInfo(Pick pickInfo){
+        pickInfoRepository.save(pickInfo);
+    }
 
     public void savePickDetail(PickDetail pickDetail){ pickDetailRepository.save(pickDetail); }
 

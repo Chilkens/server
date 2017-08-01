@@ -22,7 +22,7 @@ public class Timetable implements Serializable {
     private Long tableId;
 
     @Column(unique=true)
-    private String key;
+    private String keyUrl;
 
     @Column
     private String title;
@@ -51,18 +51,15 @@ public class Timetable implements Serializable {
     @Column
     private Short deleated;
 
-    public static Timetable build(String key, String title, Integer time, Date start, Date end, Integer max, Integer current, Timestamp createdAt, String createdBy, Short deleated) {
+    public static Timetable build(String title, Integer time, Date start, Date end, Integer max, Integer current, String createdBy) {
         return Timetable.builder()
-                .key(key)
                 .title(title)
                 .time(time)
                 .start(start)
                 .end(end)
                 .max(max)
                 .current(current)
-                .createdAt(createdAt)
                 .createdBy(createdBy)
-                .deleated(deleated)
                 .build();
     }
 }

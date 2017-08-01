@@ -21,7 +21,7 @@ public class Timetable implements Serializable {
     @Column(name = "tableId")
     private Long tableId;
 
-    @Column(name = "keyUrl")
+    @Column(name = "keyUrl", unique = true)
     private String keyUrl; // URL
 
     @Column
@@ -52,7 +52,7 @@ public class Timetable implements Serializable {
     private boolean deleted; // 삭제 여부
 
     public static Timetable build(String keyUrl, String title, Integer time, Date start, Date end,
-                                  Integer max, Integer current, Date createdAt, String createdBy, boolean deleted) {
+                                  Integer max, Integer current, String createdBy) {
 
         return Timetable.builder()
                 .keyUrl(keyUrl)
@@ -62,9 +62,7 @@ public class Timetable implements Serializable {
                 .end(end)
                 .max(max)
                 .current(current)
-                .createdAt(createdAt)
                 .createdBy(createdBy)
-                .deleted(deleted)
                 .build();
     }
 }

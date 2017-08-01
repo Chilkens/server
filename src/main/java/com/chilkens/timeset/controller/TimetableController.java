@@ -6,10 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -23,9 +20,13 @@ public class TimetableController {
 
     @ApiOperation(value = "save", notes = "save Timetable")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ApiParam("key") @PathVariable String key, @ApiParam("key") @PathVariable String title, @ApiParam("key") @PathVariable Integer time, @ApiParam("key") @PathVariable Date start, @ApiParam("key") @PathVariable Date end, @ApiParam("key") @PathVariable Integer max, @ApiParam("key") @PathVariable Integer current, @ApiParam("key") @PathVariable Date createdAt, @ApiParam("key") @PathVariable String createdBy, @ApiParam("key") @PathVariable boolean deleated) {
+    public String save(@ApiParam("keyUrl") @RequestParam String keyUrl, @ApiParam("title") @RequestParam String title,
+                       @ApiParam("time") @RequestParam Integer time, @ApiParam("start") @RequestParam Date start,
+                       @ApiParam("end") @RequestParam Date end, @ApiParam("max") @RequestParam Integer max,
+                       @ApiParam("current") @RequestParam Integer current,
+                       @ApiParam("createdBy") @RequestParam String createdBy) {
         try {
-            timetableService.save(Timetable.build(key, title, time, start, end, max, current, createdAt, createdBy, deleated));
+            timetableService.save(Timetable.build(keyUrl, title, time, start, end, max, current, createdBy));
             return "save success";
         } catch (Exception e) {
             e.printStackTrace();

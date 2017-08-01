@@ -15,7 +15,7 @@ public class TimetableService {
     @Autowired
     TimetableRepository timetableRepository;
 
-    public Timetable findByKey(String key) { return timetableRepository.findByKey(key); }
+    public Timetable findByKeyUrl(String keyUrl) { return timetableRepository.findByKeyUrl(keyUrl); }
 
     public void save(Timetable timetable){
         timetableRepository.save(timetable);

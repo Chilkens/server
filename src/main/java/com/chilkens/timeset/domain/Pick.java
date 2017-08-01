@@ -33,13 +33,11 @@ public class Pick implements Serializable {
     @Column
     private boolean deleted; // 삭제 여부
 
-    public static Pick build(Long tableId, String createdBy, Date createdAt, boolean deleted) {
+    public static Pick build(Long tableId, String createdBy) {
 
         return Pick.builder()
                 .tableId(tableId)
                 .createdBy(createdBy)
-                .createdAt(createdAt)
-                .deleted(deleted)
                 .build();
     }
 }

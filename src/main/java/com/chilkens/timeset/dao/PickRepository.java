@@ -9,4 +9,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PickRepository extends JpaRepository<Pick, Long>{
+    /*
+    @Query("SELECT LAST_INSERT_ID()")
+    int findLastId();
+    */
 }

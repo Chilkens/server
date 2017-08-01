@@ -14,15 +14,13 @@ import org.springframework.stereotype.Service;
 public class TimepickService {
 
     @Autowired
-    PickRepository pickInfoRepository;
+    PickRepository pickRepository;
 
     @Autowired
     PickDetailRepository pickDetailRepository;
 
-    public void savePickInfo(Pick pickInfo){
-        pickInfoRepository.save(pickInfo);
-    }
+    // public void savePick(Pick pickInfo){ pickRepository.save(pickInfo); }
+    public Pick savePick(Pick pickInfo){ return pickRepository.save(pickInfo); }
 
     public void savePickDetail(PickDetail pickDetail){ pickDetailRepository.save(pickDetail); }
-
 }

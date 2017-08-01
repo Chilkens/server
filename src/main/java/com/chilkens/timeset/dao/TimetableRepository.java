@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TimetableRepository extends JpaRepository<Timetable, Long> {
-    Timetable findByKey(String key);
+    Timetable findByKeyUrl(String keyUrl);
     Timetable findByCreatedBy (String createdBy);
     //    Timetable addTimeTable ();
 }

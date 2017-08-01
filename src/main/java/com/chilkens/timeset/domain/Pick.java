@@ -27,7 +27,7 @@ public class Pick implements Serializable {
     @Column
     private String createdBy; // 작성한 사람
 
-    @Column
+    @Column(insertable = false)
     private Date createdAt; // 작성 날짜
 
     @Column

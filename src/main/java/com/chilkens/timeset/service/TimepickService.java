@@ -20,7 +20,7 @@ public class TimepickService {
     PickDetailRepository pickDetailRepository;
 
     // public void savePick(Pick pickInfo){ pickRepository.save(pickInfo); }
-    public Pick savePick(Pick pickInfo){ return pickRepository.save(pickInfo); }
+    public Pick savePick(Pick pick){ return pickRepository.save(pick); }
 
     public void savePickDetail(PickDetail pickDetail){ pickDetailRepository.save(pickDetail); }
 }

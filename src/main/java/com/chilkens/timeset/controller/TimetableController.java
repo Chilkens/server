@@ -4,29 +4,25 @@ import com.chilkens.timeset.domain.Timetable;
 import com.chilkens.timeset.service.TimetableService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
-@Api(value = "OpenAndHistory API", description = "OpenAndHistory API", basePath = "/api/v1/test")
+@Api(value = "Timetable API", description = "Timetable API", basePath = "/api/v1/timetable")
 @RestController
-@RequestMapping("/api/v1/openHistory")
+@RequestMapping("/api/v1/timetable")
 public class TimetableController {
     @Autowired
     TimetableService timetableService;
 
     @ApiOperation(value = "save", notes = "save Timetable")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@ApiParam("keyUrl") @RequestParam String keyUrl, @ApiParam("title") @RequestParam String title,
-                       @ApiParam("time") @RequestParam Integer time, @ApiParam("start") @RequestParam Date start,
-                       @ApiParam("end") @RequestParam Date end, @ApiParam("max") @RequestParam Integer max,
-                       @ApiParam("current") @RequestParam Integer current,
-                       @ApiParam("createdBy") @RequestParam String createdBy) {
+    public String save(@RequestBody Timetable timetable) {
         try {
-            timetableService.save(Timetable.build(keyUrl, title, time, start, end, max, current, createdBy));
+            timetable.setKeyUrl("TEMP KEY"); // random key 예정
+
+            timetableService.save(timetable);
             return "save success";
         } catch (Exception e) {
             e.printStackTrace();

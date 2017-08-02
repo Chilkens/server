@@ -1,6 +1,7 @@
 package com.chilkens.timeset.domain;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -43,6 +44,7 @@ public class Timetable implements Serializable {
     private Integer current; // 현재까지 timepick한 인원수
 
     @Column
+    @CreationTimestamp
     private Date createdAt; // 방 개설 날짜
 
     @Column

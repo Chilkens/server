@@ -1,6 +1,7 @@
 package com.chilkens.timeset.domain;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -27,7 +28,9 @@ public class Pick implements Serializable {
     @Column
     private String createdBy; // 작성한 사람
 
-    @Column(insertable = false)
+    // @Column(insertable = false)
+    @Column
+    @CreationTimestamp
     private Date createdAt; // 작성 날짜
 
     @Column

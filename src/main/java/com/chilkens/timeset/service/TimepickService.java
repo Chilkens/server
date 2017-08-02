@@ -4,8 +4,11 @@ import com.chilkens.timeset.dao.PickDetailRepository;
 import com.chilkens.timeset.dao.PickRepository;
 import com.chilkens.timeset.domain.Pick;
 import com.chilkens.timeset.domain.PickDetail;
+import com.chilkens.timeset.dto.PickRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by ByeongChan on 2017. 7. 23..
@@ -19,8 +22,22 @@ public class TimepickService {
     @Autowired
     PickDetailRepository pickDetailRepository;
 
-    // public void savePick(Pick pickInfo){ pickRepository.save(pickInfo); }
-    public Pick savePick(Pick pick){ return pickRepository.save(pick); }
+    public void savePick(PickRequest pickRequest){
 
-    public void savePickDetail(PickDetail pickDetail){ pickDetailRepository.save(pickDetail); }
+        // 트랜잭션 삽입
+
+        Pick pick = pickRequest.getPick();
+        List<PickDetail> pickDetailList = pickRequest.getPickDetailList();
+
+        Pick savedPick = pickRepository.save(pick);
+
+        for (int i = 0; i < pickDetailList.size(); i++) {
+            PickDetail pickDetail = pickDetailList.get(i);
+            pickDetail.setPickId(savedPick.getPickId());
+
+            pickDetailRepository.save(pickDetail);
+        }
+    }
+
+    // public void savePickDetail(PickDetail pickDetail){ pickDetailRepository.save(pickDetail); }
 }

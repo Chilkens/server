@@ -28,9 +28,9 @@ public class PickDetail implements Serializable{
     private Date pickDate; // 선택 날짜
 
     @Column
-    private Integer pickTime; // 해당 날짜에서 선택한 시간
+    private String pickTime; // 해당 날짜에서 선택한 시간
 
-    public static PickDetail build(Long pickId, Date pickDate, Integer pickTime) {
+    public static PickDetail build(Long pickId, Date pickDate, String pickTime) {
 
         return PickDetail.builder()
                 .pickId(pickId)

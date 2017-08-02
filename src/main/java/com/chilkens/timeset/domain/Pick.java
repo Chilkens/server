@@ -1,11 +1,12 @@
 package com.chilkens.timeset.domain;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -15,29 +16,31 @@ import java.sql.Timestamp;
 @Entity
 @EntityListeners(value = { AuditingEntityListener.class })
 @Table(name="pick")
-public class Pick  implements Serializable {
+public class Pick implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="pickId")
     private Long pickId;
 
     @Column(name="tableId")
-    private Long tableId;
+    private Long tableId; // Foreign Key
 
     @Column
-    private String createdBy;
+    private String createdBy; // 작성한 사람
+
+    // @Column(insertable = false)
+    @Column
+    @CreationTimestamp
+    private Date createdAt; // 작성 날짜
 
     @Column
-    private Timestamp createdAt;
+    private boolean deleted; // 삭제 여부
 
-    @Column
-    private Short deleted;
+    public static Pick build(Long tableId, String createdBy) {
 
-    public static Pick build(String createdBy, Timestamp createdAt, Short deleted) {
         return Pick.builder()
+                .tableId(tableId)
                 .createdBy(createdBy)
-                .createdAt(createdAt)
-                .deleted(deleted)
                 .build();
     }
 }

@@ -5,16 +5,14 @@ package com.chilkens.timeset.controller;
  */
 
 import com.chilkens.timeset.domain.Pick;
-import com.chilkens.timeset.domain.PickDetail;
 import com.chilkens.timeset.domain.Timetable;
+import com.chilkens.timeset.dto.PickRequest;
 import com.chilkens.timeset.service.TimepickService;
 import com.chilkens.timeset.service.TimetableService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Api(value = "timepick API", description = "timepick API", basePath = "/api/v1/timepick")
 @RestController
@@ -29,9 +27,9 @@ public class TimepickController {
 
     // 시간입력 GET
     @ApiOperation(value = "findByKey", notes = "Find Timetable Information By Key")
-    @RequestMapping(value = "select/{key}", method = RequestMethod.GET)
-    public Timetable findByKey(@PathVariable String key) {
-        Timetable timetable = timetableService.findByKey(key);
+    @RequestMapping(value = "select/{keyUrl}", method = RequestMethod.GET)
+    public Timetable findByKeyUrl(@PathVariable String keyUrl) {
+        Timetable timetable = timetableService.findByKeyUrl(keyUrl);
 
         if(timetable == null){
             return null;
@@ -42,19 +40,35 @@ public class TimepickController {
 
     // 시간입력 POST
     @ApiOperation(value = "save", notes = "Save Time")
-    @RequestMapping(value = "save/{key}", method = RequestMethod.POST)
-    public String save(@PathVariable String key, @RequestBody Pick pick, @RequestBody List<PickDetail> pickDetail) {
+    @RequestMapping(value = "save/{keyUrl}", method = RequestMethod.POST)
+    public String save(@PathVariable String keyUrl, @RequestBody PickRequest pickRequest) {
 
-        // 트랜잭션 삽입 ?
         try {
-            Timetable table = timetableService.findByKey(key);
-            pick.setTableId(table.getTableId());
-            
-            timepickService.savePickInfo(pick); // build?
+            Timetable table = timetableService.findByKeyUrl(keyUrl);
 
-            for (int i = 0; i < pickDetail.size(); i++) {
-                timepickService.savePickDetail(pickDetail.get(i));
+            if(table == null){
+                // 예외처리
             }
+
+            pickRequest.getPick().setTableId(table.getTableId());
+
+            timepickService.savePick(pickRequest); // build?
+
+            // PickDetail pickDetailTemp = pickDetail.get(0);
+            // pickDetailTemp.setPickId(pickTemp.getPickId());
+
+            // pickId를 알아와야한다.
+            // Pick 전체 레코드 말고 ID만 리턴하는  쿼리를 작성못하나???
+            // int pickId = timepickService.findLastId();
+
+            /*
+            for (int i = 0; i < pickDetail.size(); i++) {
+                PickDetail pickDetailTemp = pickDetail.get(i);
+                pickDetailTemp.setPickId(pickTemp.getPickId());
+
+                timepickService.savePickDetail(pickDetailTemp);
+            }
+            */
 
             return "save success";
         } catch (Exception e) {

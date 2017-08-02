@@ -5,7 +5,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -18,24 +18,24 @@ import java.sql.Date;
 public class PickDetail implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="detailId")
+    @Column(name = "detailId")
     private Long detailId;
 
-    @OneToOne
-    @JoinColumn(name = "pickId")
-    private Pick pick;
+    @Column(name = "pickId")
+    private Long pickId; // Foreign Key
 
     @Column
-    private Date pickDate;
+    private Date pickDate; // 선택 날짜
 
     @Column
-    private Long createdBy;
+    private String pickTime; // 해당 날짜에서 선택한 시간
 
-    public static PickDetail build(Long detailed, Date pickDate, Long createdBy) {
+    public static PickDetail build(Long pickId, Date pickDate, String pickTime) {
+
         return PickDetail.builder()
-                .detailId(detailed)
+                .pickId(pickId)
                 .pickDate(pickDate)
-                .createdBy(createdBy)
+                .pickTime(pickTime)
                 .build();
     }
 }

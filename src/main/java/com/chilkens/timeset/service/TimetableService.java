@@ -15,19 +15,7 @@ public class TimetableService {
     @Autowired
     TimetableRepository timetableRepository;
 
-    public Timetable findByKey(String key) {
-        return timetableRepository.findByKey(key);
-    }
-
     public void save(Timetable timetable){
         timetableRepository.save(timetable);
-    }
-
-    public Timetable findByCreatedBy(String createdBy) {
-        return timetableRepository.findByCreatedBy(createdBy);
-    }
-
-    public List<Timetable> findAll() {
-        return timetableRepository.findAll();
     }
 }

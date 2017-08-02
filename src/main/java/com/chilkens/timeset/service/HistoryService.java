@@ -1,6 +1,6 @@
 package com.chilkens.timeset.service;
 
-import com.chilkens.timeset.dao.HistoryRepository;
+import com.chilkens.timeset.dao.PickRepository;
 import com.chilkens.timeset.dao.TimetableRepository;
 import com.chilkens.timeset.domain.Pick;
 import com.chilkens.timeset.domain.Timetable;
@@ -16,17 +16,13 @@ public class HistoryService {
     TimetableRepository timetableRepository;
 
     @Autowired
-    HistoryRepository historyRepository;
+    PickRepository pickRepository;
 
-    public Timetable findByCreatedBy(String createdBy) {
-        return timetableRepository.findByCreatedBy(createdBy);
+    public List<Timetable> findByTableId (Long tableId) {
+        return timetableRepository.findByTableId(tableId);
     }
 
-    public List<Timetable> findAll() {
-        return timetableRepository.findAll();
+    public List<Pick> findById(Long pickId) {
+        return pickRepository.findById(pickId);
     }
-
-    /*public List<Pick> findAll() {
-        return historyRepository.findAll();
-    }findAll*/
 }

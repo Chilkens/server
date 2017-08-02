@@ -12,7 +12,5 @@ import java.util.List;
 @Repository
 public interface TimetableRepository extends JpaRepository<Timetable, Long> {
     Timetable findByKeyUrl(String keyUrl);
-    Timetable findByCreatedBy (String createdBy);
-    //    Timetable addTimeTable ();
     List<Timetable> findByTableId(Long tableId);
 }

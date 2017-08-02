@@ -5,7 +5,6 @@ import com.chilkens.timeset.domain.Timetable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 /**
  * Created by ByeongChan on 2017. 7. 23..
@@ -15,7 +14,9 @@ public class TimetableService {
     @Autowired
     TimetableRepository timetableRepository;
 
-    public Timetable findByKeyUrl(String keyUrl) { return timetableRepository.findByKeyUrl(keyUrl); }
+    public Timetable findByKeyUrl(String keyUrl) {
+        return timetableRepository.findByKeyUrl(keyUrl);
+    }
 
     public void save(Timetable timetable){
         timetableRepository.save(timetable);

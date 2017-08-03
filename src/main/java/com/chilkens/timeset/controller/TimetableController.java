@@ -36,18 +36,18 @@ public class TimetableController {
     @ApiOperation(value = "findByTableId", notes = "find by tableId Timetable")
     @RequestMapping(value = "/findByTableId", method = RequestMethod.GET)
     public @ResponseBody List<Timetable> findByTableId(@RequestBody Long tableId, Model model) {
-        List<Timetable> timetable = HistoryService.findByTableId(tableId);
+        /*List<Timetable> timetable = HistoryService.findByTableId(tableId);
         model.addAttribute("timetable", timetable);
-
+    */
         return null;
     }
 
     @ApiOperation(value = "findById", notes = "find by pickId Pick")
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
     public @ResponseBody List<Pick> findById(@RequestBody Long pickId, Model model) {
-        List<Pick> pick = HistoryService.findById(pickId);
+      /*  List<Pick> pick = HistoryService.findById(pickId);
         model.addAttribute("pickId",pickId);
-
+    */
         return null;
     }
 }

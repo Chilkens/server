@@ -1,7 +1,10 @@
 package com.chilkens.timeset.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
 /**
@@ -14,7 +17,9 @@ import java.util.Date;
 @ToString
 @Builder
 public class DateInfo implements java.lang.Comparable<DateInfo>{
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
+
     private Integer time;
 
     public static DateInfo build(Date date, Integer time) {

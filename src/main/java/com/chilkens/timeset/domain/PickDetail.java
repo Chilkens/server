@@ -1,5 +1,6 @@
 package com.chilkens.timeset.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -25,6 +26,7 @@ public class PickDetail implements Serializable{
     private Long pickId; // Foreign Key
 
     @Column
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date pickDate; // 선택 날짜
 
     @Column

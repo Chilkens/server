@@ -15,25 +15,7 @@ import java.util.*;
 @Service
 public class IntersectionService {
     @Autowired
-    PickRepository pickRepository;
-
-    @Autowired
     PickJoinRepository pickJoinRepository;
-
-    //입력된 tableId에 해당하는 pickId들 찾아서 return
-    public List<Long> findPickIdByTableId(Long tableId) {
-        List<Long> pickIds = new ArrayList<>();
-        List<Pick> picks = pickRepository.findByTableId(tableId);
-        for(Pick pick : picks) {
-            pickIds.add(pick.getPickId());
-        }
-        return pickIds;
-    }
-
-    //tableId에 해당하는 pick과 pick_detail을 조인하여 테이블 리스트를 return
-    public List<PickJoin> findPickByTableId(Long tableId) {
-        return pickJoinRepository.findByTableId(tableId);
-    }
 
     //pick, pick_detail Join된 데이터를 계산에 필요한 데이터로 바꿔줌.
     public List<PickInfo> getPickInfo(Long tableId) {

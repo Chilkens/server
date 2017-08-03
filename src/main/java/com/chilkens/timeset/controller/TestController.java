@@ -21,7 +21,7 @@ public class TestController {
 
     @ApiOperation(value = "save", notes = "save test")
     @RequestMapping(value = "save/{name}/{email}", method = RequestMethod.POST)
-    public String save(@ApiParam("이름쓰세요") @PathVariable String name, @ApiParam("이메일쓰세요") @PathVariable String email) {
+    public String save(@PathVariable String name, @PathVariable String email) {
         try {
             testService.save(Test.build(name, email));
             return "save success";
@@ -30,19 +30,6 @@ public class TestController {
             return "save fail";
         }
     }
-//    @ApiOperation(value = "save", notes = "save test")
-//    @RequestMapping(value = "save", method = RequestMethod.POST)
-//    public String save(@RequestBody List<Test> test) {
-//        try {
-//            for (int i = 0; i < test.size(); i++) {
-//                testService.save(test.get(i));
-//            }
-//            return "save success";
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "save fail";
-//        }
-//    }
 
     @ApiOperation(value = "findAll", notes = "find all test")
     @RequestMapping(value = "findAll", method = RequestMethod.GET)

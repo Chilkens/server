@@ -12,36 +12,41 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(value = "Timetable API", description = "새로운 약속 시간 생성하기 api", basePath = "/api/v1/timetable")
+@Api(value = "Timetable API", description = "방 관련 API", basePath = "/api/v1/timetable")
 @RestController
 @RequestMapping("/api/v1/timetable")
 public class TimetableController {
     @Autowired
     TimetableService timetableService;
 
-    @ApiOperation(value = "save", notes = "약속시간 생성을 위해 필요한 모든 정보를 받아서 데이터베이스에 저장해주는 api")
+    @ApiOperation(value = "save", notes = "새로운 약속시간 방 개설 API")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@RequestBody Timetable timetable) {
         try {
             timetable.setKeyUrl("nooooooo"); // random key 예정
 
             timetableService.save(timetable);
-            return "save success";
+
+            return "save success"; // 리턴 값 수정해줘야 함. 방 URL 돌려줘야 함.
         } catch (Exception e) {
             e.printStackTrace();
             return "save fail";
         }
     }
 
-    /*@ApiOperation(value = "findByTableId", notes = "find by tableId Timetable")
-    @RequestMapping(value = "/findByTableId", method = RequestMethod.GET)
-    public @ResponseBody List<Timetable> findByTableId(@RequestBody Long tableId, Model model) {
-        List<Timetable> timetable = HistoryService.findByTableId(tableId);
-        model.addAttribute("timetable", timetable);
+    @ApiOperation(value = "findByKeyUrl", notes = "KEY URL을 이용해 해당 Timetable 방 정보를 가져오는 API")
+    @RequestMapping(value = "/select/{keyUrl}", method = RequestMethod.GET)
+    public Timetable findByKeyUrl(@PathVariable String keyUrl) {
+        Timetable timetable = timetableService.findByKeyUrl(keyUrl);
 
-        return null;
+        if(timetable == null){
+            return null;
+        }
+
+        return timetable;
     }
 
+    /*
     @ApiOperation(value = "findById", notes = "find by pickId Pick")
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
     public @ResponseBody List<Pick> findById(@RequestBody Long pickId, Model model) {

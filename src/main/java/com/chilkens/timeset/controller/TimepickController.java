@@ -11,10 +11,11 @@ import com.chilkens.timeset.service.TimepickService;
 import com.chilkens.timeset.service.TimetableService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Api(value = "timepick API", description = "timepick API", basePath = "/api/v1/timepick")
+@Api(value = "Timepick API", description = "시간 선택 API", basePath = "/api/v1/timepick")
 @RestController
 @RequestMapping("/api/v1/timepick")
 public class TimepickController {
@@ -25,7 +26,8 @@ public class TimepickController {
     @Autowired
     TimetableService timetableService;
 
-    // 시간입력 GET
+    // Timetable 정보를 Timetable API에서 불러올껀지 Timepick API에서 불러올껀지
+    /*
     @ApiOperation(value = "findByKey", notes = "Find Timetable Information By Key")
     @RequestMapping(value = "select/{keyUrl}", method = RequestMethod.GET)
     public Timetable findByKeyUrl(@PathVariable String keyUrl) {
@@ -37,11 +39,13 @@ public class TimepickController {
 
         return timetable;
     }
+    */
 
     // 시간입력 POST
-    @ApiOperation(value = "save", notes = "Save Time")
+    @ApiOperation(value = "save", notes = "사용자가 입력한 시간을 저장하는 API")
     @RequestMapping(value = "save/{keyUrl}", method = RequestMethod.POST)
-    public String save(@PathVariable String keyUrl, @RequestBody PickRequest pickRequest) {
+    public String save(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl,
+                       @RequestBody PickRequest pickRequest) {
 
         try {
             Timetable table = timetableService.findByKeyUrl(keyUrl);
@@ -52,25 +56,10 @@ public class TimepickController {
 
             pickRequest.getPick().setTableId(table.getTableId());
 
-            timepickService.savePick(pickRequest); // build?
+            timepickService.savePick(pickRequest);
 
-            // PickDetail pickDetailTemp = pickDetail.get(0);
-            // pickDetailTemp.setPickId(pickTemp.getPickId());
-
-            // pickId를 알아와야한다.
-            // Pick 전체 레코드 말고 ID만 리턴하는  쿼리를 작성못하나???
-            // int pickId = timepickService.findLastId();
-
-            /*
-            for (int i = 0; i < pickDetail.size(); i++) {
-                PickDetail pickDetailTemp = pickDetail.get(i);
-                pickDetailTemp.setPickId(pickTemp.getPickId());
-
-                timepickService.savePickDetail(pickDetailTemp);
-            }
-            */
-
-            return "save success";
+            return "save success"; // 리턴 값 수정해줘야 함. 어떤 걸로?
+            // return pickRequest.getPick().getPickId(); // 사용자명 돌려줄 경우
         } catch (Exception e) {
             e.printStackTrace();
 

@@ -23,7 +23,7 @@ public class TimetableController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@RequestBody Timetable timetable) {
         try {
-            timetable.setKeyUrl("TEMP KEY"); // random key 예정
+            timetable.setKeyUrl("nooooooo"); // random key 예정
 
             timetableService.save(timetable);
             return "save success";

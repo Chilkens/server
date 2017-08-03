@@ -7,7 +7,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 @Setter
 @Getter
@@ -57,9 +59,17 @@ public class Timetable implements Serializable {
     @Column
     private boolean deleted; // 삭제 여부
 
+    private static String getKey() {
+        SimpleDateFormat time = new SimpleDateFormat("yyMMddHHmmssSSS");
+        String randomString = "";
+        for(int i= 0; i<10; i++) {
+            randomString += String.valueOf((char) ((int) (new Random().nextInt(26)) + 97));
+        }
+        return time.format(new Date(System.currentTimeMillis())) + randomString;
+    }
+
     public static Timetable build(String keyUrl, String title, Integer time, Date start, Date end,
                                   Integer max, Integer current, String createdBy) {
-
         return Timetable.builder()
                 .keyUrl(keyUrl)
                 .title(title)
@@ -69,6 +79,19 @@ public class Timetable implements Serializable {
                 .max(max)
                 .current(current)
                 .createdBy(createdBy)
+                .build();
+    }
+
+    public static Timetable build(Timetable timetable) {
+        return Timetable.builder()
+                .keyUrl(getKey())
+                .title(timetable.title)
+                .time(timetable.time)
+                .start(timetable.start)
+                .end(timetable.end)
+                .max(timetable.max)
+                .current(0)
+                .createdBy(timetable.createdBy)
                 .build();
     }
 }

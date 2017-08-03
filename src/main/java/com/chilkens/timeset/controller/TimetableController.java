@@ -1,16 +1,12 @@
 package com.chilkens.timeset.controller;
 
-import com.chilkens.timeset.domain.Pick;
 import com.chilkens.timeset.domain.Timetable;
-import com.chilkens.timeset.service.HistoryService;
 import com.chilkens.timeset.service.TimetableService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Api(value = "Timetable API", description = "방 관련 API", basePath = "/api/v1/timetable")
 @RestController
@@ -21,13 +17,11 @@ public class TimetableController {
 
     @ApiOperation(value = "save", notes = "새로운 약속시간 방 개설 API")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@RequestBody Timetable timetable) {
+    public String save(@ApiParam("current는 현재 시간 입력한 사람 수(초기값 : 0)") @RequestBody Timetable timetable) {
         try {
-            timetable.setKeyUrl("nooooooo"); // random key 예정
-
-            timetableService.save(timetable);
-
-            return "save success"; // 리턴 값 수정해줘야 함. 방 URL 돌려줘야 함.
+            Timetable t = Timetable.build(timetable);
+            timetableService.save(t);
+            return t.getKeyUrl();
         } catch (Exception e) {
             e.printStackTrace();
             return "save fail";

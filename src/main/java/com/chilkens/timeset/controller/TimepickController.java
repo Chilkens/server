@@ -4,7 +4,6 @@ package com.chilkens.timeset.controller;
  * Created by ByeongChan on 2017. 7. 21..
  */
 
-import com.chilkens.timeset.domain.Pick;
 import com.chilkens.timeset.domain.Timetable;
 import com.chilkens.timeset.dto.PickRequest;
 import com.chilkens.timeset.service.TimepickService;
@@ -40,12 +39,27 @@ public class TimepickController {
         return timetable;
     }
     */
+    public static final String subscription = "입력json예시" +
+            "{\n" +
+            "\t\"pick\": {\n" +
+            "\t\t\"createdBy\": \"wrwerwer\"\n" +
+            "\t},\n" +
+            "\t\"pickDetailList\": [{\n" +
+            "\t\t\t\"pickDate\": \"2017-08-01\",\n" +
+            "\t\t\t\"pickTime\": \"3|4|5\"\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"pickDate\": \"2017-08-02\",\n" +
+            "\t\t\t\"pickTime\": \"3|4|5\"\n" +
+            "\t\t}\n" +
+            "\t]\n" +
+            "}";
 
     // 시간입력 POST
     @ApiOperation(value = "save", notes = "사용자가 입력한 시간을 저장하는 API")
     @RequestMapping(value = "save/{keyUrl}", method = RequestMethod.POST)
     public String save(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl,
-                       @RequestBody PickRequest pickRequest) {
+                       @ApiParam(subscription) @RequestBody PickRequest pickRequest) {
 
         try {
             Timetable table = timetableService.findByKeyUrl(keyUrl);

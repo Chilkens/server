@@ -1,11 +1,8 @@
 package com.chilkens.timeset.controller;
 
 import com.chilkens.timeset.domain.DateInfo;
-import com.chilkens.timeset.domain.PickDetail;
-import com.chilkens.timeset.domain.PickInfo;
-import com.chilkens.timeset.domain.PickJoin;
+import com.chilkens.timeset.domain.Timetable;
 import com.chilkens.timeset.service.IntersectionService;
-import com.chilkens.timeset.service.TimepickService;
 import com.chilkens.timeset.service.TimetableService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,11 +28,18 @@ public class IntersectionController {
     @Autowired
     IntersectionService intersectionService;
 
-    @ApiOperation(value = "findByKey", notes = "time table에 대한 unique key 값을 받아 해당하는 타임테이블의 시간 교집합을 return 해주는 API")
-    @RequestMapping(value = "{keyUrl}", method = RequestMethod.GET)
-    public List<DateInfo> findByKey(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl) {
-        Long tableId = timetableService.findByKeyUrl(keyUrl).getTableId();
+    @ApiOperation(value = "find", notes = "해당하는 타임테이블의 모임시간보다 큰 시간 교집합을 return 해주는 api (date는 yyyy-MM-dd format으로 리턴됩니다)")
+    @RequestMapping(value = "find/{keyUrl}", method = RequestMethod.GET)
+    public List<DateInfo> find(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl) {
+        Timetable table = timetableService.findByKeyUrl(keyUrl);
+        return intersectionService.getIntersection(table.getTableId(), table.getTime());
+    }
 
-        return intersectionService.getIntersection(tableId);
+    @ApiOperation(value = "findAll", notes = "해당 time table의 모든 시간 교집합을 return 해주는 api (date는 yyyy-MM-dd format으로 리턴됩니다)")
+    @RequestMapping(value = "findAll/{keyUrl}", method = RequestMethod.GET)
+    public List<DateInfo> findAll(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl) {
+        return intersectionService.getAllIntersection(
+                timetableService.findByKeyUrl(keyUrl).getTableId()
+        );
     }
 }

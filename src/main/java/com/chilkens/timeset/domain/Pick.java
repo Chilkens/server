@@ -1,5 +1,6 @@
 package com.chilkens.timeset.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -31,6 +32,7 @@ public class Pick implements Serializable {
     // @Column(insertable = false)
     @Column
     @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt; // 작성 날짜
 
     @Column

@@ -1,5 +1,6 @@
 package com.chilkens.timeset.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -32,9 +33,11 @@ public class Timetable implements Serializable {
     private Integer time; // 모임 시간
 
     @Column
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date start; // 날짜 범위 시작
 
     @Column
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date end; // 날짜 범위 마지막
 
     @Column
@@ -45,6 +48,7 @@ public class Timetable implements Serializable {
 
     @Column
     @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt; // 방 개설 날짜
 
     @Column

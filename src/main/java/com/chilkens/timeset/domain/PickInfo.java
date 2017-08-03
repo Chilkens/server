@@ -2,6 +2,7 @@ package com.chilkens.timeset.domain;
 
 import lombok.*;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

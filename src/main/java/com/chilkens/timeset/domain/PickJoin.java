@@ -1,5 +1,6 @@
 package com.chilkens.timeset.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -35,6 +36,7 @@ public class PickJoin {
     private String createdBy; // 작성한 사람
 
     @Column(insertable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt; // 작성 날짜
 
     @Column

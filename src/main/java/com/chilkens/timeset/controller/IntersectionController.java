@@ -31,7 +31,7 @@ public class IntersectionController {
     @Autowired
     IntersectionService intersectionService;
 
-    @ApiOperation(value = "findByKey", notes = "time table에 대한 unique key 값을 받아 해당하는 타임테이블의 시간 교집합을 return 해주는 api")
+    @ApiOperation(value = "findByKey", notes = "time table에 대한 unique key 값을 받아 해당하는 타임테이블의 시간 교집합을 return 해주는 API")
     @RequestMapping(value = "{keyUrl}", method = RequestMethod.GET)
     public List<DateInfo> findByKey(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl) {
         Long tableId = timetableService.findByKeyUrl(keyUrl).getTableId();

@@ -26,7 +26,8 @@ public class TimepickController {
     @Autowired
     TimetableService timetableService;
 
-    // 시간입력 GET
+    // Timetable 정보를 Timetable API에서 불러올껀지 Timepick API에서 불러올껀지
+    /*
     @ApiOperation(value = "findByKey", notes = "Find Timetable Information By Key")
     @RequestMapping(value = "select/{keyUrl}", method = RequestMethod.GET)
     public Timetable findByKeyUrl(@PathVariable String keyUrl) {
@@ -38,6 +39,7 @@ public class TimepickController {
 
         return timetable;
     }
+    */
 
     // 시간입력 POST
     @ApiOperation(value = "save", notes = "사용자가 입력한 시간을 저장하는 API")
@@ -56,7 +58,8 @@ public class TimepickController {
 
             timepickService.savePick(pickRequest);
 
-            return "save success";
+            return "save success"; // 리턴 값 수정해줘야 함. 어떤 걸로?
+            // return pickRequest.getPick().getPickId(); // 사용자명 돌려줄 경우
         } catch (Exception e) {
             e.printStackTrace();
 

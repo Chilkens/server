@@ -17,7 +17,6 @@ import java.util.List;
     pick 테이블과 pick_detail 테이블 조인한 Entity
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString

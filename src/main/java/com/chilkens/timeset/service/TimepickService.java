@@ -22,7 +22,7 @@ public class TimepickService {
     @Autowired
     PickDetailRepository pickDetailRepository;
 
-    public void savePick(PickRequest pickRequest){
+    public Pick savePick(PickRequest pickRequest){
 
         // 트랜잭션 삽입
 
@@ -37,6 +37,8 @@ public class TimepickService {
 
             pickDetailRepository.save(pickDetail);
         }
+
+        return savedPick;
     }
 
     // public void savePickDetail(PickDetail pickDetail){ pickDetailRepository.save(pickDetail); }

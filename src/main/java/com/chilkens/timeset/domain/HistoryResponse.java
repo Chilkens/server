@@ -1,6 +1,7 @@
 package com.chilkens.timeset.domain;
 
 import lombok.*;
+import org.hibernate.annotations.OrderBy;
 
 import java.util.List;
 

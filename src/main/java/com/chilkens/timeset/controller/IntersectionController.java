@@ -1,8 +1,6 @@
 package com.chilkens.timeset.controller;
 
 import com.chilkens.timeset.domain.DateInfo;
-import com.chilkens.timeset.domain.PickInfo;
-import com.chilkens.timeset.domain.ResultPick;
 import com.chilkens.timeset.domain.Timetable;
 import com.chilkens.timeset.service.IntersectionService;
 import com.chilkens.timeset.service.TimetableService;

@@ -43,9 +43,9 @@ public class IntersectionService {
         return pickInfoList;
     }
 
-//    해당하는 테이블의 모든 시간 교집합 찾아서 return
-//    Guava 교집합 method 이용
-//    TODO
+//   해당하는 테이블의 모든 시간 교집합 찾아서 return
+//   Guava 교집합 method 이용
+//   TODO
     public List<DateInfo> getAllIntersection(Long tableId) {
         List<PickInfo> picks = getPickInfo(tableId);
         List<DateInfo> intersections;
@@ -82,7 +82,7 @@ public class IntersectionService {
         return intersections;
     }
 
-//   해당하는 타임테이블의 모임 시간에 맞춘 시간 교집합 찾아서 return
+//  해당하는 타임테이블의 모임 시간에 맞춘 시간 교집합 찾아서 return
     public List<DateInfo> getIntersection(Long tableId, int minSize) {
         List<DateInfo> intersections = getAllIntersection(tableId);
         List<DateInfo> intersectionsByTime = new ArrayList<>();

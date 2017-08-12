@@ -12,17 +12,17 @@ import java.util.List;
 @Service
 public class HistoryService {
 
-//    @Autowired
-//    TimetableRepository timetableRepository;
-//
-//    @Autowired
-//    PickRepository pickRepository;
-//
-//    public List<Timetable> findByTableId (Long tableId) {
-//        return timetableRepository.findByTableId(tableId);
-//    }
-//
-//    public List<Pick> findById (Long pickId) {
-//        return pickRepository.findById(pickId);
-//    }
+    @Autowired
+    TimetableRepository timetableRepository;
+
+    @Autowired
+    PickRepository pickRepository;
+
+    public List<Timetable> findInTimetable (String createdBy) {
+        return timetableRepository.findAllByCreatedBy(createdBy);
+    }
+
+    public List<Pick> findInPick (Long tableId) {
+        return pickRepository.findByTableId(tableId);
+    }
 }

@@ -39,14 +39,4 @@ public class TimetableController {
 
         return timetable;
     }
-
-    /*
-    @ApiOperation(value = "findById", notes = "find by pickId Pick")
-    @RequestMapping(value = "/findById", method = RequestMethod.GET)
-    public @ResponseBody List<Pick> findById(@RequestBody Long pickId, Model model) {
-        List<Pick> pick = HistoryService.findById(pickId);
-        model.addAttribute("pickId",pickId);
-
-        return null;
-    }*/
 }

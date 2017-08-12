@@ -13,10 +13,9 @@ import java.util.List;
  */
 @Repository
 public interface PickRepository extends JpaRepository<Pick, Long>{
-//    List<Pick> findById(Long pickId);
+    List<Pick> findByTableId(Long tableId);
     /*
     @Query("SELECT LAST_INSERT_ID()")
     int findLastId();
     */
-   // List<Pick> findByTableId(Long tableId);
 }

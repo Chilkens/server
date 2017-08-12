@@ -20,7 +20,7 @@ public class HistoryController {
     HistoryService historyService;
 
     @ApiOperation(value = "findInPickAndTimetable", notes = "Pick과 Timetable에서 마이페이지에 관련된 정보들을 넘겨주는 api")
-    @RequestMapping(value = "/select", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public @ResponseBody List<HistoryResponse> findById(@RequestParam String kakaoId) {
         List<HistoryResponse> historyList = new ArrayList<>();
         List<Timetable> timetable = historyService.findInTimetable(kakaoId);

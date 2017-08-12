@@ -28,7 +28,6 @@ public class DateInfo implements java.lang.Comparable<DateInfo>{
                 .time(time)
                 .build();
     }
-
     //Date, time 기준 오름차순 정렬
     @Override
     public int compareTo(DateInfo o) {

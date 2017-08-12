@@ -1,5 +1,6 @@
 package com.chilkens.timeset.controller;
 
+import com.chilkens.timeset.common.NotFoundException;
 import com.chilkens.timeset.domain.Timetable;
 import com.chilkens.timeset.service.TimetableService;
 import io.swagger.annotations.Api;
@@ -18,14 +19,10 @@ public class TimetableController {
     @ApiOperation(value = "save", notes = "새로운 약속시간 방 개설 API")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ApiParam("current는 현재 시간 입력한 사람 수(초기값 : 0)") @RequestBody Timetable timetable) {
-        try {
-            Timetable t = Timetable.build(timetable);
-            timetableService.save(t);
-            return t.getKeyUrl();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "save fail";
-        }
+        Timetable t = Timetable.build(timetable);
+        timetableService.save(t);
+
+        return t.getKeyUrl();
     }
 
     @ApiOperation(value = "findByKeyUrl", notes = "KEY URL을 이용해 해당 Timetable 방 정보를 가져오는 API")
@@ -34,7 +31,7 @@ public class TimetableController {
         Timetable timetable = timetableService.findByKeyUrl(keyUrl);
 
         if(timetable == null){
-            return null;
+            throw new NotFoundException();
         }
 
         return timetable;

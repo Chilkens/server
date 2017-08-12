@@ -1,5 +1,6 @@
 package com.chilkens.timeset.controller;
 
+import com.chilkens.timeset.common.NotFoundException;
 import com.chilkens.timeset.domain.DateInfo;
 import com.chilkens.timeset.domain.Timetable;
 import com.chilkens.timeset.service.IntersectionService;
@@ -34,6 +35,10 @@ public class IntersectionController {
 
         Timetable table = timetableService.findByKeyUrl(keyUrl);
 
+        if(table == null){
+            throw new NotFoundException();
+        }
+
         return intersectionService.getIntersection(table.getTableId(), table.getTime());
     }
 
@@ -41,9 +46,13 @@ public class IntersectionController {
     @RequestMapping(value = "findAll/{keyUrl}", method = RequestMethod.GET)
     public List<DateInfo> findAll(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl) {
 
-        return intersectionService.getAllIntersection(
-                timetableService.findByKeyUrl(keyUrl).getTableId()
-        );
+        Timetable table = timetableService.findByKeyUrl(keyUrl);
+
+        if(table == null){
+            throw new NotFoundException();
+        }
+
+        return intersectionService.getAllIntersection(table.getTableId());
     }
 
 //    @ApiOperation(value = "AlterTest", notes = "test")

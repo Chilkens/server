@@ -2,9 +2,6 @@ package com.chilkens.timeset.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.Entity;
 import java.util.Date;
 
 /**

@@ -4,7 +4,6 @@ package com.chilkens.timeset.controller;
  * Created by ByeongChan on 2017. 7. 21..
  */
 
-import com.chilkens.timeset.domain.Pick;
 import com.chilkens.timeset.domain.Timetable;
 import com.chilkens.timeset.dto.PickRequest;
 import com.chilkens.timeset.service.TimepickService;
@@ -15,6 +14,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @Api(value = "Timepick API", description = "시간 선택 API", basePath = "/api/v1/timepick")
 @RestController
 @RequestMapping("/api/v1/timepick")

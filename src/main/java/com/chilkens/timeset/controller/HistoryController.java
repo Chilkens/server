@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @Api(value = "HistoryResponse API", description = "마이페이지 API", basePath = "/api/v1/history")
 @RestController
 @RequestMapping("/api/v1/history")

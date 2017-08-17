@@ -18,9 +18,9 @@ public class IntersectionResponse {
     Boolean hasIntersection; // 교집합이 있는지 여부 (없을 경우 차선책 return - false)
     List<String> possible; // 해당시간에 모임에 참석 가능한 사람 name list
     List<String> impossible; // 해당시간에 모임에 참석 불가능한 사람 name list
-    List<DateInfoResponse> intersection;
+    DateInfoResponse intersection;
 
-    public static IntersectionResponse build(Boolean hasIntersection, List<String> possible, List<String> impossible, List<DateInfoResponse> Intersection) {
+    public static IntersectionResponse build(Boolean hasIntersection, List<String> possible, List<String> impossible, DateInfoResponse Intersection) {
         return IntersectionResponse.builder()
                 .hasIntersection(hasIntersection)
                 .possible(possible)

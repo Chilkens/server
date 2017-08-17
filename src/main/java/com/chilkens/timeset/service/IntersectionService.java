@@ -35,8 +35,8 @@ public class IntersectionService {
         List<IntersectionResponse> subIntersections = new ArrayList<>(); // 차선책 result
 
         Boolean hasIntersection; //교집합이 존재하는지 여부
+        DateInfoResponse intersections; // 교집합 날짜, 시간 정보
         List<String> possible, impossible; // 해당시간에 모임에 참석 가능/불가능 한 사람 name list
-        List<DateInfoResponse> intersections; // 교집합 날짜, 시간 정보
 
         int min = (table.getMax() % 2 == 0) ? table.getMax() / 2 : table.getMax() / 2+1; // 교집합 찾을 때 넘어야 하는 최소 인원 (과반수 이상)
         int i, j;
@@ -79,7 +79,6 @@ public class IntersectionService {
                     max = pickIds.size();
                     possible = new ArrayList<>();
                     impossible = new ArrayList<>();
-                    intersections = new ArrayList<>();
 
                     // input possible
                     for (Long id : pickIds) {
@@ -102,7 +101,7 @@ public class IntersectionService {
                     for (int k = p; k < p + size; k++) {
                         time.add(6 + k);
                     }
-                    intersections.add(DateInfoResponse.build(cal.getTime(), time));
+                    intersections = DateInfoResponse.build(cal.getTime(), time);
 
                     //input hasIntersection
                     hasIntersection = (possible.size() == table.getMax()) ? true : false;

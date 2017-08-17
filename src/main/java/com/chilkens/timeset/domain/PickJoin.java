@@ -35,7 +35,7 @@ public class PickJoin {
     private String createdBy; // 작성한 사람
 
     @Column(insertable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private Date createdAt; // 작성 날짜
 
     @Column
@@ -43,7 +43,7 @@ public class PickJoin {
 
     @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="pickId")
-    private List<PickDetail> pickDetailList = new ArrayList<>();
+    private List<PickDetail> pickDetails = new ArrayList<>();
 
     /*
      sample result

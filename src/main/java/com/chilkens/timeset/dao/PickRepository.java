@@ -16,11 +16,10 @@ import java.util.List;
 @Repository
 public interface PickRepository extends JpaRepository<Pick, Long>{
     List<Pick> findByTableId(Long tableId);
-    /*
-    @Query("SELECT LAST_INSERT_ID()")
-    int findLastId();
-    */
 
     @Query("SELECT p.createdBy FROM pick p WHERE tableId=:tableId")
     List<String> findNameByTableId(@Param("tableId") Long tableId);
+
+    @Query("SELECT p.createdBy FROM pick p WHERE pickId=:pickId")
+    String findNameByPickId(@Param("pickId") Long pickId);
 }

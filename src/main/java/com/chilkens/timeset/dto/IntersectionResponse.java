@@ -1,29 +1,31 @@
 package com.chilkens.timeset.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by hoody on 2017-08-12.
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@Builder
 public class IntersectionResponse {
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    Boolean hasIntersection; // 교집합이 있는지 여부 (없을 경우 차선책 return - false)
+    List<String> possible; // 해당시간에 모임에 참석 가능한 사람 name list
+    List<String> impossible; // 해당시간에 모임에 참석 불가능한 사람 name list
+    List<DateInfoResponse> intersection;
 
-    private List<Integer> time;
-
-    public static IntersectionResponse build(Date date, List<Integer> time) {
+    public static IntersectionResponse build(Boolean hasIntersection, List<String> possible, List<String> impossible, List<DateInfoResponse> Intersection) {
         return IntersectionResponse.builder()
-                .date(date)
-                .time(time)
+                .hasIntersection(hasIntersection)
+                .possible(possible)
+                .impossible(impossible)
+                .intersection(Intersection)
                 .build();
     }
 }

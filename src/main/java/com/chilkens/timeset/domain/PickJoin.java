@@ -35,7 +35,7 @@ public class PickJoin {
     private String createdBy; // 작성한 사람
 
     @Column(insertable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt; // 작성 날짜
 
     @Column

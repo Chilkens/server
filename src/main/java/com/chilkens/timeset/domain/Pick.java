@@ -32,7 +32,7 @@ public class Pick implements Serializable {
     // @Column(insertable = false)
     @Column
     @CreationTimestamp
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdAt; // 작성 날짜
 
     @Column

@@ -17,8 +17,6 @@ import java.util.List;
 public interface TimetableRepository extends JpaRepository<Timetable, Long> {
     Timetable findByKeyUrl(String keyUrl);
 
-    Timetable findByTableId(Long tableId);
-
     @Modifying
     @Query("UPDATE Timetable SET current = current + 1 WHERE tableId = :tableId")
     void updateCurrrent(@Param("tableId") Long tableId);

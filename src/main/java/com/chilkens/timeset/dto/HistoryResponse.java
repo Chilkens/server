@@ -1,7 +1,7 @@
-package com.chilkens.timeset.domain;
+package com.chilkens.timeset.dto;
 
+import com.chilkens.timeset.domain.Timetable;
 import lombok.*;
-import org.hibernate.annotations.OrderBy;
 
 import java.util.List;
 

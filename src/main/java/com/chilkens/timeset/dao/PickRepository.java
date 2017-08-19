@@ -14,7 +14,8 @@ import java.util.List;
  */
 @Repository
 public interface PickRepository extends JpaRepository<Pick, Long> {
-    List<Pick> findByTableId(Long tableId);
+    @Query(value = "SELECT * FROM pick WHERE tableId=:tableId", nativeQuery = true)
+    List<Pick> findByTableId(@Param("tableId") Long tableId);
 
     /*
     @Query(value = "SELECT createdBy FROM pick WHERE tableId = :tableId", nativeQuery = true)

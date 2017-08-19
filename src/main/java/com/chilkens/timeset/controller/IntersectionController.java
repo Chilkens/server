@@ -1,59 +1,28 @@
 package com.chilkens.timeset.controller;
 
-import com.chilkens.timeset.common.NotFoundException;
-import com.chilkens.timeset.domain.DateInfo;
-import com.chilkens.timeset.domain.Timetable;
+import com.chilkens.timeset.dto.IntersectionResponse;
 import com.chilkens.timeset.service.IntersectionService;
-import com.chilkens.timeset.service.TimetableService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by hoody on 2017-07-30.
  */
+
+@CrossOrigin(origins = "*")
 @Api(value = "Intersection API", description = "공통 시간 찾기 API", basePath = "/api/v1/intersection")
 @RestController
 @RequestMapping("/api/v1/intersection")
 public class IntersectionController {
-    @Autowired
-    TimetableService timetableService;
 
     @Autowired
     IntersectionService intersectionService;
-
-    @ApiOperation(value = "find", notes = "해당하는 타임테이블의 모임시간보다 큰 시간 교집합을 return 해주는 api (date는 yyyy-MM-dd format으로 리턴됩니다)")
-    @RequestMapping(value = "find/{keyUrl}", method = RequestMethod.GET)
-    public List<DateInfo> find(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl) {
-
-        Timetable table = timetableService.findByKeyUrl(keyUrl);
-
-        if(table == null){
-            throw new NotFoundException();
-        }
-
-        return intersectionService.getIntersection(table.getTableId(), table.getTime());
-    }
-
-    @ApiOperation(value = "findAll", notes = "해당 time table의 모든 시간 교집합을 return 해주는 api (date는 yyyy-MM-dd format으로 리턴됩니다)")
-    @RequestMapping(value = "findAll/{keyUrl}", method = RequestMethod.GET)
-    public List<DateInfo> findAll(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl) {
-
-        Timetable table = timetableService.findByKeyUrl(keyUrl);
-
-        if(table == null){
-            throw new NotFoundException();
-        }
-
-        return intersectionService.getAllIntersection(table.getTableId());
-    }
 
 //    @ApiOperation(value = "AlterTest", notes = "test")
 //    @RequestMapping(value = "test/{keyUrl}", method = RequestMethod.GET)
@@ -62,4 +31,15 @@ public class IntersectionController {
 //        return intersectionService.getAlternative(table.getTableId());
 //        // return intersectionService.getPickInfo(table.getTableId());
 //    }
+    @ApiOperation(value = "sub/find",
+            notes = "교집합 찾는 API. 교집합이 있을 경우 교집합을 찾아서 넘겨주고 / 교집합이 없을 경우 차선책을 넘겨준다. 차선책도 없을 경우 null 반환 (date format : 'yyyy-MM-dd')")
+    @RequestMapping(value = "find", method = RequestMethod.GET)
+    public IntersectionResponse find(@ApiParam("unique한 key값 입력") @RequestParam String key) {
+        //차선책 중 한개만 선택
+        List<IntersectionResponse> l = intersectionService.getIntersection(key);
+        if(l.size() == 0) {
+            return null;
+        }
+        return l.get(new Random().nextInt(l.size()));
+    }
 }

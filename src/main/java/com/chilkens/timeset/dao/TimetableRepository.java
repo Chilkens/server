@@ -26,6 +26,7 @@ public interface TimetableRepository extends JpaRepository<Timetable, Long> {
     @OrderBy("tableId DESC")
     List<Timetable> findAllByCreatedBy(String createdBy);
 
+    /*
     @Query(value = "SELECT * FROM time_table WHERE createdBy = :createdBy AND current != max order by tableId desc",
             nativeQuery = true)
     List<Timetable> findProgressTable(@Param("createdBy") String createdBy);
@@ -33,4 +34,5 @@ public interface TimetableRepository extends JpaRepository<Timetable, Long> {
     @Query(value = "SELECT * FROM time_table WHERE createdBy = :createdBy AND current = max order by tableId desc",
             nativeQuery = true)
     List<Timetable> findFinishTable(@Param("createdBy") String createdBy);
+    */
 }

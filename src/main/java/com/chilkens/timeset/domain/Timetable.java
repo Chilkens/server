@@ -50,7 +50,7 @@ public class Timetable implements Serializable {
 
     @Column
     @CreationTimestamp
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private Date createdAt; // 방 개설 날짜
 
     @Column

@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @Api(value = "Timetable API", description = "방 관련 API", basePath = "/api/v1/timetable")
 @RestController
 @RequestMapping("/api/v1/timetable")

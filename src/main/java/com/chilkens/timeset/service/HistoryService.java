@@ -2,13 +2,11 @@ package com.chilkens.timeset.service;
 
 import com.chilkens.timeset.dao.PickRepository;
 import com.chilkens.timeset.dao.TimetableRepository;
-import com.chilkens.timeset.domain.HistoryResponse;
 import com.chilkens.timeset.domain.Pick;
 import com.chilkens.timeset.domain.Timetable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +19,6 @@ public class HistoryService {
     @Autowired
     PickRepository pickRepository;
 
-    /*
     public List<Timetable> findAllInTimetable (String createdBy) {
         return timetableRepository.findAllByCreatedBy(createdBy);
     }
@@ -51,8 +48,8 @@ public class HistoryService {
     public List<Pick> findInPick (Long tableId) {
         return pickRepository.findByTableId(tableId);
     }
-    */
 
+    /*
     public List<HistoryResponse> findHistory(String name){
         List<HistoryResponse> result = new ArrayList<>();
 
@@ -60,12 +57,12 @@ public class HistoryService {
         List<Timetable> finishTables = timetableRepository.findFinishTable(name);
 
         for(Timetable progressTable : progressTables){
-            /*
+
             HistoryResponse savedResponse = new HistoryResponse();
 
             savedResponse.setTimetable(progessTable);
             savedResponse.setPickName(pickRepository.findNameByTableId(progessTable.getTableId()));
-            */
+
             HistoryResponse savedResponse =
                     HistoryResponse.build(progressTable, pickRepository.findNameByTableId(progressTable.getTableId()));
 
@@ -92,4 +89,5 @@ public class HistoryService {
 
         return pickTables;
     }
+    */
 }

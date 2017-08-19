@@ -1,6 +1,7 @@
 package com.chilkens.timeset.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,8 @@ import java.io.IOException;
 /**
  * Created by hoody on 2017-07-16.
  */
+
+@CrossOrigin(origins = "*")
 @RestController
 public class IndexController {
     @RequestMapping("/")

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @Api(value = "HistoryResponse API", description = "마이페이지 API", basePath = "/api/v1/history")
 @RestController
 @RequestMapping("/api/v1/history")
@@ -20,7 +21,6 @@ public class HistoryController {
     @Autowired
     HistoryService historyService;
 
-    /*
     @ApiOperation(value = "findInPickAndTimetable", notes = "Pick과 Timetable에서 마이페이지에 관련된 정보들을 넘겨주는 api")
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody void findById(@RequestParam String kakaoId, Model model) {
@@ -58,8 +58,8 @@ public class HistoryController {
             System.out.println(progTimetable.get(i).getTableId());
         }
     }
-    */
 
+    /*
     @ApiOperation(value = "Timatable History Return", notes = "Pick과 Timetable에서 마이페이지에 관련된 정보들을 넘겨주는 api")
     @RequestMapping(method = RequestMethod.GET)
     public List<HistoryResponse> findById(@RequestParam String name){
@@ -68,4 +68,5 @@ public class HistoryController {
 
         return historyTimetable;
     }
+    */
 }

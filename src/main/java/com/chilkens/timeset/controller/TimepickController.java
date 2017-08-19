@@ -7,7 +7,6 @@ package com.chilkens.timeset.controller;
 import com.chilkens.timeset.common.NotFoundException;
 import com.chilkens.timeset.domain.Pick;
 import com.chilkens.timeset.domain.Timetable;
-import com.chilkens.timeset.dto.PickRequest;
 import com.chilkens.timeset.service.TimepickService;
 import com.chilkens.timeset.service.TimetableService;
 import io.swagger.annotations.Api;
@@ -16,13 +15,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
+@CrossOrigin(origins = "*")
 @Api(value = "Timepick API", description = "시간 선택 API", basePath = "/api/v1/timepick")
 @RestController
 @RequestMapping("/api/v1/timepick")

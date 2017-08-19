@@ -43,7 +43,7 @@ public class PickJoin {
 
     @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="pickId")
-    private List<PickDetail> pickDetailList = new ArrayList<>();
+    private List<PickDetail> pickDetails = new ArrayList<>();
 
     /*
      sample result

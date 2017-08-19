@@ -8,7 +8,8 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by hoody on 2017-07-30.
@@ -23,6 +24,13 @@ public class IntersectionController {
     @Autowired
     IntersectionService intersectionService;
 
+//    @ApiOperation(value = "AlterTest", notes = "test")
+//    @RequestMapping(value = "test/{keyUrl}", method = RequestMethod.GET)
+//    public List<ResultPick> findAlter(@ApiParam("keyUrl") @PathVariable String keyUrl) {
+//        Timetable table = timetableService.findByKeyUrl(keyUrl);
+//        return intersectionService.getAlternative(table.getTableId());
+//        // return intersectionService.getPickInfo(table.getTableId());
+//    }
     @ApiOperation(value = "sub/find",
             notes = "교집합 찾는 API. 교집합이 있을 경우 교집합을 찾아서 넘겨주고 / 교집합이 없을 경우 차선책을 넘겨준다. 차선책도 없을 경우 null 반환 (date format : 'yyyy-MM-dd')")
     @RequestMapping(value = "find", method = RequestMethod.GET)
@@ -34,5 +42,4 @@ public class IntersectionController {
         }
         return l.get(new Random().nextInt(l.size()));
     }
-
 }

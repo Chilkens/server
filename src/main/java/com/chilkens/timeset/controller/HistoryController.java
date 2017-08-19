@@ -26,6 +26,7 @@ public class HistoryController {
     public @ResponseBody void findById(@RequestParam String kakaoId, Model model) {
         List<HistoryResponse> historyFin = new ArrayList<>();
         List<HistoryResponse> historyProg = new ArrayList<>();
+
         List<Timetable> finTimetable = historyService.findFinInTimetable(kakaoId);
         List<Timetable> progTimetable = historyService.findProgInTimetable(kakaoId);
         List<String> pickName = new ArrayList<>();
@@ -45,10 +46,10 @@ public class HistoryController {
 
         }
 
-        for(int i=0; i<progTimetable.size(); i++){
+        for(int i=0; i<progTimetable.size(); i++) {
             Long tableId = progTimetable.get(i).getTableId();
             List<Pick> pick = historyService.findInPick(tableId);
-            for(int j=0; j<pick.size(); j++){
+            for (int j = 0; j < pick.size(); j++) {
                 String names = pick.get(j).getCreatedBy();
                 pickName.add(names);
             }
@@ -56,6 +57,16 @@ public class HistoryController {
             model.addAttribute("progressTimetable", historyProg);
             System.out.println(progTimetable.get(i).getTableId());
         }
-
     }
+
+    /*
+    @ApiOperation(value = "Timatable History Return", notes = "Pick과 Timetable에서 마이페이지에 관련된 정보들을 넘겨주는 api")
+    @RequestMapping(method = RequestMethod.GET)
+    public List<HistoryResponse> findById(@RequestParam String name){
+
+        List<HistoryResponse> historyTimetable = historyService.findHistory(name);
+
+        return historyTimetable;
+    }
+    */
 }

@@ -33,6 +33,9 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-validation')
 	compile('org.springframework.boot:spring-boot-starter-web')
 
+	//Json
+	compile group: 'org.json', name: 'json', version: '20170516'
+
 	compile 'org.hibernate:hibernate-java8'
 
 	//Tomcat

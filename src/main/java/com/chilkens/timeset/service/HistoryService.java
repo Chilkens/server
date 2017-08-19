@@ -48,4 +48,46 @@ public class HistoryService {
     public List<Pick> findInPick (Long tableId) {
         return pickRepository.findByTableId(tableId);
     }
+
+    /*
+    public List<HistoryResponse> findHistory(String name){
+        List<HistoryResponse> result = new ArrayList<>();
+
+        List<Timetable> progressTables = timetableRepository.findProgressTable(name);
+        List<Timetable> finishTables = timetableRepository.findFinishTable(name);
+
+        for(Timetable progressTable : progressTables){
+
+            HistoryResponse savedResponse = new HistoryResponse();
+
+            savedResponse.setTimetable(progessTable);
+            savedResponse.setPickName(pickRepository.findNameByTableId(progessTable.getTableId()));
+
+            HistoryResponse savedResponse =
+                    HistoryResponse.build(progressTable, pickRepository.findNameByTableId(progressTable.getTableId()));
+
+            result.add(savedResponse);
+        }
+
+        for (Timetable finishTable : finishTables) {
+            HistoryResponse savedResponse =
+                    HistoryResponse.build(finishTable, pickRepository.findNameByTableId(finishTable.getTableId()));
+
+            result.add(savedResponse);
+        }
+
+        return result;
+    }
+
+    public List<Timetable> findHistoryByPickName(String name){
+        List<Timetable> pickTables = new ArrayList<>();
+        List<BigInteger> tableIds = pickRepository.findTableByName(name);
+
+        for (BigInteger tableId : tableIds) {
+            pickTables.add(timetableRepository.findByTableId(tableId.longValue()));
+        }
+
+        return pickTables;
+    }
+    */
 }

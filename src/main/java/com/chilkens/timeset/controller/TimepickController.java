@@ -27,21 +27,6 @@ public class TimepickController {
     @Autowired
     TimetableService timetableService;
 
-    // Timetable 정보를 Timetable API에서 불러올껀지 Timepick API에서 불러올껀지
-    /*
-    @ApiOperation(value = "findByKey", notes = "Find Timetable Information By Key")
-    @RequestMapping(value = "select/{keyUrl}", method = RequestMethod.GET)
-    public Timetable findByKeyUrl(@PathVariable String keyUrl) {
-        Timetable timetable = timetableService.findByKeyUrl(keyUrl);
-
-        if(timetable == null){
-            return null;
-        }
-
-        return timetable;
-    }
-    */
-
     // 시간입력 POST
     @ApiOperation(value = "save", notes = "사용자가 입력한 시간을 저장하는 API \n(회원가입을 안하는데 나중에 수정 등등 할 일 생길수도있어서 일단 저장성공하면 pickId(pick 한 사람마다 생기는 PK) 리턴하게 해두었습니다)")
     @RequestMapping(value = "save/{keyUrl}", method = RequestMethod.POST)

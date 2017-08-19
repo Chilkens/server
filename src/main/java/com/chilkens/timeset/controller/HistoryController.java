@@ -68,5 +68,6 @@ public class HistoryController {
 
         return historyTimetable;
     }
+    나연아 이거 참고하고 나중에 push 할 때 지워
     */
 }

@@ -27,9 +27,9 @@ public class IntersectionController {
     @ApiOperation(value = "sub/find",
             notes = "교집합 찾는 API. 교집합이 있을 경우 교집합을 찾아서 넘겨주고 / 교집합이 없을 경우 차선책을 넘겨준다. 차선책도 없을 경우 null 반환 (date format : 'yyyy-MM-dd')")
     @RequestMapping(value = "find", method = RequestMethod.GET)
-    public IntersectionResponse find(@ApiParam("unique한 key값 입력") @RequestParam String key) {
+    public IntersectionResponse find(@ApiParam("unique한 key값 입력") @RequestParam String keyUrl) {
         //차선책 중 한개만 선택
-        List<IntersectionResponse> l = intersectionService.getIntersection(key);
+        List<IntersectionResponse> l = intersectionService.getIntersection(keyUrl);
         if(l.size() == 0) {
             return null;
         }

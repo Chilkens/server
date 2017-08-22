@@ -5,6 +5,7 @@ import com.chilkens.timeset.domain.PickDetail;
 import lombok.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ByeongChan on 2017. 8. 2..
@@ -19,9 +20,9 @@ public class PickRequest {
 
     private Pick pick;
 
-    private List<PickDetail> pickDetailList;
+    private Map<String, int[]> pickDetailList;
 
-    public static PickRequest build(Pick pick, List<PickDetail> pickDetailList) {
+    public static PickRequest build(Pick pick, Map<String, int[]> pickDetailList) {
         return PickRequest.builder()
                 .pick(pick)
                 .pickDetailList(pickDetailList)

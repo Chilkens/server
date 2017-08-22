@@ -26,7 +26,8 @@ public class PickDetail implements Serializable{
     private Long pickId; // Foreign Key
 
     @Column
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private Date pickDate; // 선택 날짜
 
     @Column

@@ -2,9 +2,7 @@ package com.chilkens.timeset.service;
 
 import com.chilkens.timeset.dao.PickJoinRepository;
 import com.chilkens.timeset.dao.PickRepository;
-import com.chilkens.timeset.domain.PickDetail;
-import com.chilkens.timeset.domain.PickJoin;
-import com.chilkens.timeset.domain.Timetable;
+import com.chilkens.timeset.domain.*;
 import com.chilkens.timeset.dto.DateInfoResponse;
 import com.chilkens.timeset.dto.IntersectionResponse;
 import org.springframework.beans.factory.annotation.Autowired;

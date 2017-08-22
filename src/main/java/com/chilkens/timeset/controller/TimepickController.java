@@ -31,9 +31,20 @@ public class TimepickController {
 
     // 시간입력 POST
     @ApiOperation(value = "save", notes = "사용자가 입력한 시간을 저장하는 API \n(회원가입을 안하는데 나중에 수정 등등 할 일 생길수도있어서 일단 저장성공하면 pickId(pick 한 사람마다 생기는 PK) 리턴하게 해두었습니다)")
-    @RequestMapping(value = "save/{keyUrl}", method = RequestMethod.POST)
-    public PickResponse save(@ApiParam("unique한 key값 입력") @PathVariable String keyUrl,
+    @RequestMapping(value = "saves", method = RequestMethod.POST)
+    public PickResponse save(@ApiParam("unique한 key값 입력") @RequestParam String keyUrl,
                        @RequestBody PickRequest pickRequest) throws Exception {
+        /**************SAMPLE*********************
+         {
+             "pick": {
+                "createdBy": "itenerr"
+             },
+             "pickDetailList": {
+                 "2017-08-03": [15, 16, 17],
+                 "2017-08-04": [15, 16, 17]
+             }
+         }
+         ******************************************/
 
         Timetable table = timetableService.findByKeyUrl(keyUrl);
 
@@ -41,27 +52,9 @@ public class TimepickController {
             throw new NotFoundException();
         }
 
-        /**************SAMPLE*********************
-         {
-            "pick": {
-                "createdBy": "itenerr"
-            },
-            "pickDetailList": {
-                "2017-08-03": [15, 16, 17],
-                "2017-08-04": [15, 16, 17]
-            }
-         }
-        ******************************************/
-
         pickRequest.getPick().setTableId(table.getTableId());
 
         Pick resultPick = timepickService.savePick(pickRequest);
-
-        /*
-        pick.setTableId(table.getTableId());
-
-        Pick resultPick = timepickService.savePick(pick, pickDetailList);
-        */
 
         return PickResponse.build(resultPick.getPickId());
     }

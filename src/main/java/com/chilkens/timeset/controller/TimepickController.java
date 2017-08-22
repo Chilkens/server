@@ -31,7 +31,7 @@ public class TimepickController {
 
     // 시간입력 POST
     @ApiOperation(value = "save", notes = "사용자가 입력한 시간을 저장하는 API \n(회원가입을 안하는데 나중에 수정 등등 할 일 생길수도있어서 일단 저장성공하면 pickId(pick 한 사람마다 생기는 PK) 리턴하게 해두었습니다)")
-    @RequestMapping(value = "saves", method = RequestMethod.POST)
+    @RequestMapping(value = "save", method = RequestMethod.POST)
     public PickResponse save(@ApiParam("unique한 key값 입력") @RequestParam String keyUrl,
                        @RequestBody PickRequest pickRequest) throws Exception {
         /**************SAMPLE*********************

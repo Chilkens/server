@@ -6,13 +6,10 @@ import com.chilkens.timeset.dao.TimetableRepository;
 import com.chilkens.timeset.domain.Pick;
 import com.chilkens.timeset.domain.PickDetail;
 import com.chilkens.timeset.dto.PickRequest;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.HTMLDocument;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -137,45 +134,12 @@ public class TimepickService {
             // set
             pickDetail.setPickTime(pickTime);
 
-            pickDetailRepository.save(pickDetail);
-        }
-
-        /*
-        while (iterator.hasNext()){
-            // KEY 값 순서대로 추출
-            String key = iterator.next().toString();
-            // String --> Date
-            Date pickDate = format.parse(key);
-            // const, set
-            PickDetail pickDetail = new PickDetail();
-
-            pickDetail.setPickId(savedPick.getPickId());
-            pickDetail.setPickDate(pickDate);
-            // 시간 리스트 추출
-            JSONArray jsonArray = jsonObject.getJSONArray(key);
-            // 시간 리스트 --> String
-            String pickTime = "";
-            for (int i = 0; i < jsonArray.length(); i++) {
-                if(i == (jsonArray.length() - 1)){
-                    pickTime = pickTime + jsonArray.get(i);
-                } else {
-                    pickTime = pickTime + jsonArray.get(i) + "|";
-                }
+            if(pickTime.equals("")){
+                continue;
+            } else{
+                pickDetailRepository.save(pickDetail);
             }
-            // set
-            pickDetail.setPickTime(pickTime);
-
-            pickDetailRepository.save(pickDetail);
         }
-        */
-
-//        // pick_detail 저장
-//        for (int i = 0; i < pickDetailList.size(); i++) {
-//            PickDetail pickDetail = pickDetailList.get(i);
-//            pickDetail.setPickId(savedPick.getPickId());
-//
-//            pickDetailRepository.save(pickDetail);
-//        }
 
         // time_table current +1
         // timetableRepository.updateCurrrent(pick.getTableId());

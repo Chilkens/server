@@ -48,15 +48,19 @@ public class TimepickController {
 
         Timetable table = timetableService.findByKeyUrl(keyUrl);
 
-        if (table == null) {
+        if(table == null) {
             throw new NotFoundException();
         }
 
-        pickRequest.getPick().setTableId(table.getTableId());
+        if(table.getMax().equals(table.getCurrent())){
+            return PickResponse.build(new Long(-1));
+        } else {
+            pickRequest.getPick().setTableId(table.getTableId());
 
-        Pick resultPick = timepickService.savePick(pickRequest);
+            Pick resultPick = timepickService.savePick(pickRequest);
 
-        return PickResponse.build(resultPick.getPickId());
+            return PickResponse.build(resultPick.getPickId());
+        }
     }
 }
 

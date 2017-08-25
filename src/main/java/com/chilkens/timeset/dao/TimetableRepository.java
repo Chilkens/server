@@ -21,16 +21,6 @@ public interface TimetableRepository extends JpaRepository<Timetable, Long> {
     @Query("UPDATE Timetable SET current = current + 1 WHERE tableId = :tableId")
     void updateCurrrent(@Param("tableId") Long tableId);
 
-    @OrderBy("tableId DESC")
-    List<Timetable> findAllByCreatedBy(String createdBy);
+    List<Timetable> findAllByCreatedByOrderByTableIdDesc(String createdBy);
 
-    /*
-    @Query(value = "SELECT * FROM time_table WHERE createdBy = :createdBy AND current != max order by tableId desc",
-            nativeQuery = true)
-    List<Timetable> findProgressTable(@Param("createdBy") String createdBy);
-
-    @Query(value = "SELECT * FROM time_table WHERE createdBy = :createdBy AND current = max order by tableId desc",
-            nativeQuery = true)
-    List<Timetable> findFinishTable(@Param("createdBy") String createdBy);
-    */
 }

@@ -38,6 +38,9 @@ dependencies {
 
 	compile 'org.hibernate:hibernate-java8'
 
+	//Gson
+	compile group: 'com.google.code.gson', name: 'gson', version:'2.2.2'
+
 	//Tomcat
 	compile("org.springframework.boot:spring-boot-starter-tomcat")
 

@@ -23,4 +23,6 @@ public interface TimetableRepository extends JpaRepository<Timetable, Long> {
 
     List<Timetable> findAllByCreatedByOrderByCreatedAtDesc(String createdBy);
 
+    @Query("SELECT t.tableId FROM Timetable t WHERE keyUrl=:keyUrl")
+    Long findTableIdByKeyUrl(@Param("keyUrl") String keyUrl);
 }

@@ -17,17 +17,9 @@ public interface PickRepository extends JpaRepository<Pick, Long> {
     @Query(value = "SELECT * FROM pick WHERE tableId=:tableId", nativeQuery = true)
     List<Pick> findByTableId(@Param("tableId") Long tableId);
 
-    /*
-    @Query(value = "SELECT createdBy FROM pick WHERE tableId = :tableId", nativeQuery = true)
-    List<String> findNameByTableId(@Param("tableId") Long tableId);
-
-    @Query(value = "SELECT tableId FROM pick WHERE createdBy = :createdBy", nativeQuery = true)
-    List<BigInteger> findTableByName(@Param("createdBy") String createdBy);
-    */
-
-    @Query("SELECT p.createdBy FROM pick p WHERE tableId=:tableId")
-    List<String> findNameByTableId(@Param("tableId") Long tableId);
-
     @Query("SELECT p.createdBy FROM pick p WHERE pickId=:pickId")
     String findNameByPickId(@Param("pickId") Long pickId);
+
+    @Query("SELECT p.pickId FROM pick p WHERE tableId=:tableId")
+    List<Long> findPickIdByTableId(@Param("tableId") Long tableId);
 }

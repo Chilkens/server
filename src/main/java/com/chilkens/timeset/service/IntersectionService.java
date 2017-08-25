@@ -38,7 +38,7 @@ public class IntersectionService {
         DateInfoResponse intersections; // 교집합 날짜, 시간 정보
         List<String> possible, impossible; // 해당시간에 모임에 참석 가능/불가능 한 사람 name list
 
-        int min = table.getMax() / 2; // 교집합 찾을 때 넘어야 하는 최소 인원 (과반수 이상)
+        int min = (table.getMax() % 2 == 0) ? table.getMax() / 2 : table.getMax() / 2+1; // 교집합 찾을 때 넘어야 하는 최소 인원 (과반수 이상)
         int i, j;
         int size; // 연속된 시간 size count
         int p; // 연속된 시간 시작 인덱스 가리키는 역할
@@ -53,7 +53,7 @@ public class IntersectionService {
                 // last column index check and null check
                 // 열의 마지막 인덱스가 아니면서 해당 시간을 선택한 사람이 과반수 이상일 때만 계속 진행
                 // + 현재 모여진 시간이 모임시간보다 같거나 클 경우에만 계속 진행
-                if (j != m[i].length - 1 && (m[i][j] == null || m[i][j].size() <= min) && size < table.getTime() ) {
+                if (j != m[i].length - 1 && (m[i][j] == null || m[i][j].size() < min) && size < table.getTime() ) {
                     if(size < table.getTime()) {
                         pickIds = new ArrayList<>();
                         size = 0;

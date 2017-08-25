@@ -39,13 +39,10 @@ public class IntersectionController {
     public Object find(@ApiParam("unique한 key값 입력") @RequestParam String keyUrl) {
         List<IntersectionResponse> l = intersectionService.getIntersection(keyUrl);
 
-        int idx = (int)(long)timetableRepository.findTableIdByKeyUrl(keyUrl) % l.size();
-        log.info("randomIdx : " + String.valueOf(idx));
-
         if(l.size() == 0) {
             return new StatusResponse().build("empty");
         }
 
-        return l.get(idx);
+        return l.get((int)(long)timetableRepository.findTableIdByKeyUrl(keyUrl) % l.size());
     }
 }

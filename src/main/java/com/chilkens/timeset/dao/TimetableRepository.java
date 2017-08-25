@@ -21,6 +21,6 @@ public interface TimetableRepository extends JpaRepository<Timetable, Long> {
     @Query("UPDATE Timetable SET current = current + 1 WHERE tableId = :tableId")
     void updateCurrrent(@Param("tableId") Long tableId);
 
-    List<Timetable> findAllByCreatedByOrderByTableIdDesc(String createdBy);
+    List<Timetable> findAllByCreatedByOrderByCreatedAtDesc(String createdBy);
 
 }

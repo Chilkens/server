@@ -53,11 +53,10 @@ public class HistoryService {
             Long tableId = Timetable.get(i).getTableId();
             List<Pick> pick = findInPick(tableId);
             for(int j=0; j<pick.size(); j++){
-                String names = pick.get(j).getCreatedBy();
-                pickName.add(names);
+                pickName.add(pick.get(j).getCreatedBy());
             }
             history.add(HistoryResponse.build(Timetable.get(i), pickName));
-            System.out.println(Timetable.get(i).getTableId());
+            pickName = new ArrayList();
         }
         return history;
     }

@@ -111,7 +111,7 @@ public class IntersectionService {
                     //input hasIntersection
                     hasIntersection = (possible.size() == table.getMax()) ? true : false;
 
-                    subIntersections.add(IntersectionResponse.build(hasIntersection, possible, impossible, intersections));
+                    subIntersections.add(IntersectionResponse.build(table.getTitle(), hasIntersection, possible, impossible, intersections));
                 }
                 size = 1;
                 p = j;

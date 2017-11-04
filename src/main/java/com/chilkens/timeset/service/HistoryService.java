@@ -21,7 +21,7 @@ public class HistoryService {
     PickRepository pickRepository;
 
     public List<Timetable> findFinInTimetable (String createdBy) {
-        List<Timetable> timetable = timetableRepository.findAllByCreatedByOrderByCreatedAtDesc(createdBy);
+        List<Timetable> timetable = timetableRepository.findTop5ByCreatedByOrderByCreatedAtDesc(createdBy);
         List<Timetable> finishTable = new ArrayList<>();
         for(int i=0; i<timetable.size(); i++){
             if(timetable.get(i).getCurrent() == timetable.get(i).getMax()){
@@ -32,7 +32,7 @@ public class HistoryService {
     }
 
     public List<Timetable> findProgInTimetable (String createdBy) {
-        List<Timetable> timetable = timetableRepository.findAllByCreatedByOrderByCreatedAtDesc(createdBy);
+        List<Timetable> timetable = timetableRepository.findTop5ByCreatedByOrderByCreatedAtDesc(createdBy);
         List<Timetable> progressTable = new ArrayList<>();
         for(int i=0; i<timetable.size(); i++){
             if(timetable.get(i).getCurrent() < timetable.get(i).getMax()){

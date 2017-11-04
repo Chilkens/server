@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.OrderBy;
+import java.sql.Time;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ public interface TimetableRepository extends JpaRepository<Timetable, Long> {
     void updateCurrrent(@Param("tableId") Long tableId);
 
     List<Timetable> findAllByCreatedByOrderByCreatedAtDesc(String createdBy);
+
+    List<Timetable> findTop5ByCreatedByOrderByCreatedAtDesc(String createdBy);
 
     @Query("SELECT t.tableId FROM Timetable t WHERE keyUrl=:keyUrl")
     Long findTableIdByKeyUrl(@Param("keyUrl") String keyUrl);
